@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<block>
+  <name>rand_zeros_extend_c</name>
+  <key>echo_rand_zeros_extend_c</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.rand_zeros_extend_c($prepend_min, $prepend_max, $append_min, $append_max)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Min Prepend Zeros</name>
+    <key>prepend_min</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Max Prepend Zeros</name>
+    <key>prepend_max</key>
+    <type>int</type>
+  </param>
+    <param>
+    <name>Min Append Zeros</name>
+    <key>append_min</key>
+    <type>int</type>
+  </param>
+    <param>
+    <name>Max Append Zeros</name>
+    <key>append_max</key>
+    <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>frame</name>
+    <type>message</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>extended</name>
+    <type>message</type>
+  </source>
+</block>

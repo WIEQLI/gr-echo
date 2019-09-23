@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<block>
+  <name>modulator_classic_spy</name>
+  <key>echo_modulator_classic_spy</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.modulator_classic_spy($bits_per_symb, $preamble, $log_interval, $spy_length, spy_threshold=$spy_threshold)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Bits Per Symbol</name>
+    <key>bits_per_symb</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Preamble</name>
+    <key>preamble</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>BER Log Interval</name>
+    <key>log_interval</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Length</name>
+    <key>spy_length</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Threshold</name>
+    <key>spy_threshold</key>
+    <type>float</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>bits</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>update</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>symbols</name>
+    <type>message</type>
+  </source>
+</block>

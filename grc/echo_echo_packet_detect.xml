@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<block>
+  <name>echo_packet_detect</name>
+  <key>echo_echo_packet_detect</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.echo_packet_detect($samps_per_symb, $beta_rrc, $cfo_samps, $corr_reps, $body_size, $threshold)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>CFO Samples</name>
+    <key>cfo_samps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Correlation Repetitions</name>
+    <key>corr_reps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Body Size</name>
+    <key>body_size</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Detection Threshold</name>
+    <key>threshold</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Samples Per Symbol</name>
+    <key>samps_per_symb</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>RRC Beta</name>
+    <key>beta_rrc</key>
+    <type>float</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>frame</name>
+    <type>message</type>
+  </source>
+</block>

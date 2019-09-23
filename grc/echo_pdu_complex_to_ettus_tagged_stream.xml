@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<block>
+  <name>pdu_complex_to_ettus_tagged_stream</name>
+  <key>echo_pdu_complex_to_ettus_tagged_stream</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.pdu_complex_to_ettus_tagged_stream($length_tag_name, $sob_tag_name, $eob_tag_name, $timeout_ms)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+      <name>Length tag name</name>
+      <key>length_tag_name</key>
+      <value>packet_len</value>
+      <type>string</type>
+  </param>
+  <param>
+      <name>sob tag name</name>
+      <key>sob_tag_name</key>
+      <value>tx_sob</value>
+      <type>string</type>
+  </param>
+  <param>
+      <name>eob tag name</name>
+      <key>eob_tag_name</key>
+      <value>tx_eob</value>
+      <type>string</type>
+  </param>
+  <param>
+      <name>polling timeout ms</name>
+      <key>timeout_ms</key>
+      <value>100</value>
+      <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<block>
+  <name>demodulator_classic_spy</name>
+  <key>echo_demodulator_classic_spy</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.demodulator_classic_spy(bits_per_symbol=$bits_per_symbol, block_length=$block_length,
+      preamble=$preamble, log_ber_interval=$log_ber_interval,
+      spy_length=$spy_length, spy_threshold=$spy_threshold,
+      alias=$_alias)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Bits Per Symbol</name>
+    <key>bits_per_symbol</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Block Length</name>
+    <key>block_length</key>
+    <type>int</type>
+    <!--<value>1024</value>-->
+  </param>
+  <param>
+    <name>Preamble</name>
+    <key>preamble</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>Log Interval</name>
+    <key>log_ber_interval</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Length</name>
+    <key>spy_length</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Threshold</name>
+    <key>spy_threshold</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>_Alias_</name>
+    <key>_alias</key>
+    <type>string</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>symbols</name>
+    <type>message</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>bits</name>
+    <type>message</type>
+  </source>
+  <source>
+    <name>corrupt</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

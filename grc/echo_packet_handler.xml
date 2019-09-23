@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<block>
+  <name>packet_handler</name>
+  <key>echo_packet_handler</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.packet_handler($cfo_samps, $corr_reps, $body_size, $cfar_thresh, $samps_per_symb, $beta_rrc, $cfo_freqs)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>CFO Samples</name>
+    <key>cfo_samps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>CFO Freqs</name>
+    <key>cfo_freqs</key>
+    <type>float_vector</type>
+  </param>
+  <param>
+    <name>Correlator Repetitions</name>
+    <key>corr_reps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Body Size</name>
+    <key>body_size</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>CFAR Threshold</name>
+    <key>cfar_thresh</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Samples Per Symbol</name>
+    <key>samps_per_symb</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Beta RRC</name>
+    <key>beta_rrc</key>
+    <type>float</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>IQ in</name>
+    <type>complex</type>
+    <optional>1</optional>
+  </sink>
+  <sink>
+    <name>wrap_in</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>wrap_out</name>
+    <type>complex</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>unwrap_out</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

@@ -1,0 +1,26 @@
+diff --git a/creedsolo.pyx b/creedsolo.pyx
+index 3b9c320..6bf4227 100644
+--- a/creedsolo.pyx
++++ b/creedsolo.pyx
+@@ -822,7 +822,7 @@ class RSCodec(object):
+     def encode(self, data):
+         '''Encode a message (ie, add the ecc symbols) using Reed-Solomon, whatever the length of the message because we use chunking'''
+         if isinstance(data, str):
+-            data = bytearray(data, "latin-1")
++            data = bytearray(data)
+         chunk_size = self.nsize - self.nsym
+         enc = bytearray()
+         for i in xrange(0, len(data), chunk_size):
+diff --git a/reedsolo.py b/reedsolo.py
+index 0848493..73eff36 100644
+--- a/reedsolo.py
++++ b/reedsolo.py
+@@ -758,7 +758,7 @@ class RSCodec(object):
+     def encode(self, data):
+         '''Encode a message (ie, add the ecc symbols) using Reed-Solomon, whatever the length of the message because we use chunking'''
+         if isinstance(data, str):
+-            data = bytearray(data, "latin-1")
++            data = bytearray(data)
+         chunk_size = self.nsize - self.nsym
+         enc = bytearray()
+         for i in xrange(0, len(data), chunk_size):

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<block>
+  <name>preamble_insert</name>
+  <key>echo_preamble_insert</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.preamble_insert($preamble, $add_head, $rm_head, $rm_tail)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Preamble</name>
+    <key>preamble</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>Add Head</name>
+    <key>add_head</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Remove Head</name>
+    <key>rm_head</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Remove Tail</name>
+    <key>rm_tail</key>
+    <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>message</type>
+  </source>
+</block>

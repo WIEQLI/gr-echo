@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<block>
+  <name>triggered_vector_source_b</name>
+  <key>echo_triggered_vector_source_b</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.triggered_vector_source_b($data, $triggers, $initial_trigger, $tag_key)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Data</name>
+    <key>data</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>Trigger Tags</name>
+    <key>triggers</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Initial Trigger</name>
+    <key>initial_trigger</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Tag Key</name>
+    <key>tag_key</key>
+    <type>string</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>trigger</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<block>
+  <name>echo_mod_demod</name>
+  <key>echo_echo_mod_demod</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.echo_mod_demod($npreamble, $shared_preamble, $bits_per_symb, 
+      $modtype, $demodtype, 
+      mod_seed=$mod_seed, demod_seed=$demod_seed, 
+      mod_hidden_layers=$mod_hidden_layers, demod_hidden_layers=$demod_hidden_layers, 
+      mod_init_weights=$mod_init_weights, demod_init_weights=$demod_init_weights,
+      log_interval=$log_interval, spy_length=$spy_length, spy_threshold=$spy_threshold, 
+      max_amplitude=$max_amplitude, lambda_center=$lambda_center,
+      _alias=$_alias)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Preamble Size Bits</name>
+    <key>npreamble</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Shared Preamble</name>
+    <key>shared_preamble</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Bits Per Symbol</name>
+    <key>bits_per_symb</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Modulator Type</name>
+    <key>modtype</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Demodulator Type</name>
+    <key>demodtype</key>
+    <type>string</type>
+</param>
+<param>
+    <name>Mod Seed</name>
+    <key>mod_seed</key>
+    <type>int</type>
+</param>
+<param>
+    <name>Demod Seed</name>
+    <key>demod_seed</key>
+    <type>int</type>
+</param>
+<param>
+    <name>Mod Hidden Layers</name>
+    <key>mod_hidden_layers</key>
+    <type>int_vector</type>
+</param>
+<param>
+    <name>Demod Hidden Layers</name>
+    <key>demod_hidden_layers</key>
+    <type>int_vector</type>
+</param>
+<param>
+    <name>Mod Init Weights</name>
+    <key>mod_init_weights</key>
+    <type>string</type>
+</param>
+<param>
+    <name>Demod Init Weights</name>
+    <key>demod_init_weights</key>
+    <type>string</type>
+</param>
+  <param>
+    <name>Log Interval</name>
+    <key>log_interval</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Length</name>
+    <key>spy_length</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Threshold</name>
+    <key>spy_threshold</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Max Amplitude</name>
+    <key>max_amplitude</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Lambda Center</name>
+    <key>lambda_center</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>_Alias_</name>
+    <key>_alias</key>
+    <type>string</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>mod_in</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <sink>
+    <name>demod_in</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>control</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>mod_out</name>
+    <type>message</type>
+  </source>
+  <source>
+    <name>demod_out</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

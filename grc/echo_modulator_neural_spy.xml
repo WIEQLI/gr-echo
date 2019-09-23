@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<block>
+  <name>modulator_neural_spy</name>
+  <key>echo_modulator_neural_spy</key>
+  <category>[echo]</category>
+  <import>import echo</import>
+  <make>echo.modulator_neural_spy(seed=$seed, hidden_layers=$hidden_layers,
+      bits_per_symbol=$bits_per_symbol, preamble=$preamble,
+      log_constellation_interval=$log_constellation_interval, init_weights=$init_weights,
+      spy_length=$spy_length, spy_threshold=$spy_threshold)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Seed</name>
+    <key>seed</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Hidden Layers</name>
+    <key>hidden_layers</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>Bits Per Symbol</name>
+    <key>bits_per_symbol</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Preamble</name>
+    <key>preamble</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>Constellation Log Interval</name>
+    <key>log_constellation_interval</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Initial Weight File</name>
+    <key>init_weights</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Spy Length</name>
+    <key>spy_length</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spy Threshold</name>
+    <key>spy_threshold</key>
+    <type>float</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>bits</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>feedback</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <sink>
+    <name>control</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>symbols</name>
+    <type>message</type>
+  </source>
+</block>
